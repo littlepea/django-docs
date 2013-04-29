@@ -12,7 +12,7 @@ def read_file(filename):
         return ''
 
 try:
-    REQUIREMENTS = read_file('requirements.txt').read()
+    REQUIREMENTS = read_file('requirements.txt').splitlines()
 except:
     REQUIREMENTS = [
         'Django',
