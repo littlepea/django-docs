@@ -1,0 +1,6 @@
+include AUTHORS
+include LICENSE
+include README.rst
+include *.txt
+recursive-include docs *
+recursive-exclude * *.pyc
