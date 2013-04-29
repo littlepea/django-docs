@@ -15,4 +15,4 @@ install:
   - pip install -r test_requirements.txt --use-mirrors
 
 # command to run tests
-script: python dosc/tests/runtests.py
+script: python docs/tests/runtests.py
