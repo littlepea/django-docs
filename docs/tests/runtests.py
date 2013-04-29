@@ -45,12 +45,13 @@ if not settings.configured:
         INSTALLED_APPS=INSTALLED_APPS,
         ROOT_URLCONF='docs.tests.urls',
         TEMPLATE_DIRS=(
-            os.path.join(os.path.dirname(__file__), '../templates'),
+            os.path.join(os.path.dirname(__file__), '../../templates'),
         ),
         COVERAGE_MODULE_EXCLUDES=COVERAGE_MODULE_EXCLUDES,
         COVERAGE_REPORT_HTML_OUTPUT_DIR=os.path.join(
             os.path.dirname(__file__), 'coverage'),
         USE_TZ=True,
+        PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
     )
 
 
