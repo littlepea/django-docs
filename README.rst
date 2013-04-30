@@ -69,3 +69,8 @@ You can run the tests with via::
 or::
 
     python docs/tests/runtests.py
+
+Screenshot
+----------
+
+.. image:: http://screencloud.net//img/screenshots/6521a4af4845acceaad80bd64f842a61.png
