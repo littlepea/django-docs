@@ -9,7 +9,8 @@ Allows to serve Sphinx generated docs from django.
 Credits
 -------
 
-* Project on GitHub `littlepea/django-docs <https://github.com/littlepea/django-docs/>`_
+* Project on GitHub: `littlepea/django-docs <https://github.com/littlepea/django-docs/>`_
+* `Documentation on Read The Docs <https://django-docs.readthedocs.org/>`_
 * Maintained by `Evgeny Demchenko <https://github.com/littlepea>`_
 
 Installation
