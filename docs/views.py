@@ -36,6 +36,7 @@ def superuser_required(view_func):
         return login(request, **defaults)
     return _checklogin
 
+
 def public(function=None):
     """
     Dummy decorator that doesn't check anything.

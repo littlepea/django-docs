@@ -30,11 +30,11 @@ Installation
 
 3. Add `docs.urls` to urls.py::
 
-    urlpatterns = patterns('',
+    urlpatterns = [
         ...
         url(r'^docs/', include('docs.urls')),
         ...
-    )
+    ]
 
 4. Customize configuration::
 
@@ -59,8 +59,13 @@ Docs access level (public by default). Possible values:
 * staff - docs are visible only to staff users (user.is_staff == True)
 * superuser - docs are visible only to superusers (user.is_superuser == True)
 
-Running the Tests
-------------------------------------
+Running the tests
+-----------------
+
+Make sure to install `test_requirements.txt` first::
+
+    pip install -r test_requirements.txt
+    pip install -e .
 
 You can run the tests with via::
 
@@ -70,7 +75,27 @@ or::
 
     python docs/tests/runtests.py
 
+To run all tests against different versions of Django simply run::
+
+    tox
+
+Running the example project
+---------------------------
+
+Make sure to install `requirements.txt` first::
+
+    virtualenv env
+    . env/bin/activate
+    pip install -r test_requirements.txt
+    pip install -e .
+
+You can run the example project with via::
+
+    cd example
+    python manage.py migrate
+    python manage.py runserver
+
 Screenshot
 ----------
 
-.. image:: http://screencloud.net//img/screenshots/6521a4af4845acceaad80bd64f842a61.png
+.. image:: https://www.evernote.com/l/AHRVMNRZKLVPaoCgJouF_-Pz7rfeDzGF32sB/image.png
