@@ -1,10 +1,16 @@
 django-docs
 ===========
 
-.. image:: https://travis-ci.org/littlepea/django-docs.png?branch=master
+.. image:: https://img.shields.io/travis/littlepea/django-docs.svg?style=flat-square
     :target: http://travis-ci.org/littlepea/django-docs
 
-Allows to serve Sphinx generated docs from django.
+.. image:: https://img.shields.io/pypi/v/django-docs.svg
+    :target:  https://pypi.python.org/pypi/django-docs/
+
+.. image:: https://img.shields.io/badge/license-New%20BSD-blue.svg
+    :target: https://raw.githubusercontent.com/littlepea/django-docs/master/LICENSE
+
+`django-docs` allows to serve Sphinx generated docs from Django.
 
 Dependencies
 ------------
