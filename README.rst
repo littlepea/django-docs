@@ -6,6 +6,12 @@ django-docs
 
 Allows to serve Sphinx generated docs from django.
 
+Dependencies
+------------
+
+* Python 2.7
+* Django 1.8 or higher
+
 Credits
 -------
 
