@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from docs import views
 
-TEST_DOCS_ROOT=os.path.abspath(os.path.join(os.path.dirname(__file__), 'test_docs'))
+
+TEST_DOCS_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), 'test_docs'))
 
 
 class DocsViewsTestBase(TestCase):
@@ -64,5 +65,7 @@ class LoginAccessTest(DocsViewsTestBase):
         self.assertEqual(views.DOCS_ACCESS, 'login_required')
 
     def test_index_html(self):
-        response = self.client.get(reverse('docs_files', kwargs={'path': 'index.html'}))
-        self.assertRedirects(response, '/accounts/login/?next=/index.html', target_status_code=302)
+        request = self.rf.request()
+        request.user = self.user
+        response = views.serve_docs(request, 'index.html')
+        self.assertEqual(response.status_code, 200)

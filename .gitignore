@@ -3,6 +3,7 @@
 .pydevproject
 *~
 *.db
+*.sqlite3
 *.orig
 *.DS_Store
 .coverage
@@ -13,3 +14,4 @@ build*
 docs/_build/*
 dist/*
 .idea/*
+env/*
