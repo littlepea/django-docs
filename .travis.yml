@@ -1,18 +1,17 @@
 language: python
 
 python:
-  - "2.6"
   - "2.7"
 
 env:
-  - DJANGO_VERSION=1.4.5
-  - DJANGO_VERSION=1.5.1
+  - DJANGO_VERSION=1.8.14
+  - DJANGO_VERSION=1.10
 
 # command to install dependencies for the selected Django version
 install:
-  - pip install Django==$DJANGO_VERSION --use-mirrors
-  - pip install . --use-mirrors
-  - pip install -r test_requirements.txt --use-mirrors
+  - pip install Django==$DJANGO_VERSION
+  - pip install .
+  - pip install -r test_requirements.txt
 
 # command to run tests
 script: python docs/tests/runtests.py
