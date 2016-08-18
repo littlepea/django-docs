@@ -9,7 +9,6 @@ from django.contrib.auth.views import login
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.utils.translation import ugettext as _
-from exceptions import ValueError
 
 
 def superuser_required(view_func):
