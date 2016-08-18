@@ -10,7 +10,7 @@ django-docs
 .. image:: https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat-square
     :target: https://raw.githubusercontent.com/littlepea/django-docs/master/LICENSE
 
-`django-docs` allows to serve Sphinx generated docs from Django.
+`django-docs` allows to serve Sphinx generated docs directly from Django.
 
 Dependencies
 ------------
