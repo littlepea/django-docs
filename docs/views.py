@@ -1,5 +1,10 @@
 from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse
+
+try:
+    from django.core.urlresolvers import reverse
+except ModuleNotFoundError:
+    from django.urls import reverse
+
 from django.views.static import serve
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
