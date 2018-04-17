@@ -93,5 +93,6 @@ def serve_docs(request, path, **kwargs):
 
 class DocsRootView(RedirectView):
     def get_redirect_url(self, **kwargs):
-        return reverse('docs_files', kwargs={'path': 'index.html'})
+        view_name = ':'.join(filter(None, [self.request.resolver_match.namespace, 'docs_files']))
+        return reverse(view_name, kwargs={'path': 'index.html'})
 
