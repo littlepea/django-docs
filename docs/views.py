@@ -2,7 +2,6 @@ from django.views.generic import RedirectView
 
 try:
     from django.core.urlresolvers import reverse
-    # fix for python 3.6
 except ImportError:
     from django.urls import reverse
 
@@ -97,4 +96,5 @@ def serve_docs(request, path, **kwargs):
 
 class DocsRootView(RedirectView):
     def get_redirect_url(self, **kwargs):
-        return reverse('docs_files', kwargs={'path': 'index.html'})
+        view_name = ':'.join(filter(None, [self.request.resolver_match.namespace, 'docs_files']))
+        return reverse(view_name, kwargs={'path': 'index.html'})
