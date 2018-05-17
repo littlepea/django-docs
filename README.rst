@@ -15,8 +15,8 @@ django-docs
 Dependencies
 ------------
 
-* Python 2.7
-* Django 1.8 or higher
+* Python 2.7 for Django 1.8 - 1.11
+* Python 3.6 for Django 2.0 or higher
 
 Credits
 -------
