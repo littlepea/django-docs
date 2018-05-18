@@ -1,4 +1,3 @@
-
 from django.views.generic import RedirectView
 
 try:
