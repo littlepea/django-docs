@@ -1,6 +1,9 @@
 *.py[co]
 .project
 .pydevproject
+Pipfile
+Pipfile.lock
+.python-version
 *~
 *.db
 *.sqlite3
@@ -11,6 +14,7 @@
 build*
 .tox
 *.egg-info/*
+.eggs
 docs/_build/*
 dist/*
 .idea/*
