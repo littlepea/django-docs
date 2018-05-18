@@ -1,12 +1,25 @@
 import os
 from django.test import TestCase
 from django.test.client import Client, RequestFactory
-from django.core.urlresolvers import reverse
+
+try:
+    from django.core.urlresolvers import reverse
+    # fix for python 3.6
+except ImportError:
+    from django.urls import reverse
+
 from django.test.utils import override_settings
 from django.contrib.auth.models import User
 from django.http import Http404
 from docs import views
 
+try:
+    reload  # Python 2.7
+except NameError:
+    try:
+        from importlib import reload  # Python 3.4+
+    except ImportError:
+        from imp import reload  # Python 3.0 - 3.3
 
 TEST_DOCS_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), 'test_docs'))
 

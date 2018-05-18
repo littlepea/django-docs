@@ -1,14 +1,11 @@
+
 from django.views.generic import RedirectView
-<<<<<<< HEAD
-from django.urls import reverse
-=======
 
 try:
     from django.core.urlresolvers import reverse
 except ImportError:
     from django.urls import reverse
 
->>>>>>> upstream/master
 from django.views.static import serve
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -99,4 +96,3 @@ class DocsRootView(RedirectView):
     def get_redirect_url(self, **kwargs):
         view_name = ':'.join(filter(None, [self.request.resolver_match.namespace, 'docs_files']))
         return reverse(view_name, kwargs={'path': 'index.html'})
-
