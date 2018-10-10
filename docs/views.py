@@ -10,9 +10,8 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from functools import wraps
 from django.contrib.admin.forms import AdminAuthenticationForm
-from django.contrib.auth.views import login
+from django.contrib.auth.views import LoginView
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.utils.translation import ugettext as _
 
 
@@ -30,14 +29,14 @@ def superuser_required(view_func):
         assert hasattr(request, 'session'), "The Django admin requires session middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'django.contrib.sessions.middleware.SessionMiddleware'."
         defaults = {
             'template_name': 'admin/login.html',
+            'redirect_field_name': request.get_full_path(),
             'authentication_form': AdminAuthenticationForm,
             'extra_context': {
                 'title': _('Log in'),
-                'app_path': request.get_full_path(),
-                REDIRECT_FIELD_NAME: request.get_full_path(),
-                },
+                'app_path': request.get_full_path()
+                }
             }
-        return login(request, **defaults)
+        return LoginView(request, **defaults)
     return _checklogin
 
 
