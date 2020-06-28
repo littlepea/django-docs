@@ -64,16 +64,18 @@ DOCS_ACCESS_CHOICES = (
 DOCS_ROOT = getattr(settings, 'DOCS_ROOT', None)
 DOCS_ACCESS = getattr(settings, 'DOCS_ACCESS', DOCS_ACCESS_CHOICES[0])
 
-if DOCS_ACCESS == 'public':
+if DOCS_ACCESS == 'public' or DOCS_ACCESS not in [
+    'login_required',
+    'staff',
+    'superuser',
+]:
     decorator = public
 elif DOCS_ACCESS == 'login_required':
     decorator = login_required
 elif DOCS_ACCESS == 'staff':
     decorator = staff_member_required
-elif DOCS_ACCESS == 'superuser':
-    decorator = superuser_required
 else:
-    decorator = public
+    decorator = superuser_required
 
 
 @decorator
@@ -83,9 +85,9 @@ def serve_docs(request, path, **kwargs):
             DOCS_ACCESS,
             DOCS_ACCESS_CHOICES
         ))
-    if 'document_root' not in kwargs and not DOCS_ROOT:
+    if not ('document_root' in kwargs or DOCS_ROOT):
         raise DocsRootSettingError('DOCS_ROOT setting value is incorrect: %s (must be a valid path)' % DOCS_ROOT)
-    if 'document_root' not in kwargs and DOCS_ROOT:
+    if 'document_root' not in kwargs:
         kwargs['document_root'] = DOCS_ROOT
     return serve(request, path, **kwargs)
 
