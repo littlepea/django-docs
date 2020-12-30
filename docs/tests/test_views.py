@@ -69,6 +69,9 @@ class PublicAccessTest(DocsViewsTestBase):
 
     def test_incorrect_path(self):
         self.assertRaises(Http404, views.serve_docs, self.rf.request(), 'wrong.html')
+    
+    def test_sub_directory_path(self):
+        self.assertEqual(views.serve_docs(self.rf.request(), 'sub_dir/').status_code, 200)
 
 
 @override_settings(DOCS_ROOT=TEST_DOCS_ROOT, DOCS_ACCESS='login_required')
