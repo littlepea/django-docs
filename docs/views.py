@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.views.generic import RedirectView
 
 try:
@@ -89,7 +90,12 @@ def serve_docs(request, path, **kwargs):
         raise DocsRootSettingError('DOCS_ROOT setting value is incorrect: %s (must be a valid path)' % DOCS_ROOT)
     if 'document_root' not in kwargs:
         kwargs['document_root'] = DOCS_ROOT
-    return serve(request, path, **kwargs)
+    
+    try:
+        return serve(request, path, **kwargs)
+    except Http404:
+        path = path + "index.html"
+        return serve(request, path, **kwargs)
 
 
 class DocsRootView(RedirectView):
