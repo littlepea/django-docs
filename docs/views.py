@@ -1,3 +1,4 @@
+from os.path import join
 from django.http.response import Http404
 from django.views.generic import RedirectView
 
@@ -64,6 +65,7 @@ DOCS_ACCESS_CHOICES = (
 )
 DOCS_ROOT = getattr(settings, 'DOCS_ROOT', None)
 DOCS_ACCESS = getattr(settings, 'DOCS_ACCESS', DOCS_ACCESS_CHOICES[0])
+DOCS_DIRHTML = getattr(settings, 'DOCS_DIRHTML', False)
 
 if DOCS_ACCESS == 'public' or DOCS_ACCESS not in [
     'login_required',
@@ -94,8 +96,11 @@ def serve_docs(request, path, **kwargs):
     try:
         return serve(request, path, **kwargs)
     except Http404:
-        path = path + "index.html"
-        return serve(request, path, **kwargs)
+        if DOCS_DIRHTML:
+            path = join(path, "index.html")
+            return serve(request, path, **kwargs)
+        
+        raise
 
 
 class DocsRootView(RedirectView):
