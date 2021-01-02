@@ -63,12 +63,40 @@ class PublicAccessTest(DocsViewsTestBase):
     def test_settings(self):
         self.assertEqual(views.DOCS_ROOT, TEST_DOCS_ROOT)
         self.assertEqual(views.DOCS_ACCESS, 'public')
+        self.assertEqual(views.DOCS_DIRHTML, False)
 
     def test_index_html(self):
         self.assertEqual(views.serve_docs(self.rf.request(), 'index.html').status_code, 200)
 
     def test_incorrect_path(self):
         self.assertRaises(Http404, views.serve_docs, self.rf.request(), 'wrong.html')
+    
+    def test_sub_directory_path(self):
+        self.assertRaises(Http404, views.serve_docs, self.rf.request(), 'sub_dir/')
+    
+    def test_root_redirects(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response.url, "/index.html")
+
+
+@override_settings(DOCS_ROOT=TEST_DOCS_ROOT, DOCS_ACCESS='public', DOCS_DIRHTML=True)
+class DIRHTMLTest(DocsViewsTestBase):
+    def test_settings(self):
+        self.assertEqual(views.DOCS_ROOT, TEST_DOCS_ROOT)
+        self.assertEqual(views.DOCS_ACCESS, 'public')
+        self.assertEqual(views.DOCS_DIRHTML, True)
+
+    def test_sub_directory_path_with_trailing_slash(self):
+        self.assertEqual(views.serve_docs(self.rf.request(), 'sub_dir/').status_code, 200)
+    
+    def test_sub_directory_path_without_trailing_slash(self):
+        self.assertEqual(views.serve_docs(self.rf.request(), 'sub_dir').status_code, 200)
+
+    # This conflicts with the `test_root_redirects` above
+    # def test_root_redirects(self):
+    #     response = self.client.get("/")
+    #     self.assertEqual(response.status_code, 200)
 
 
 @override_settings(DOCS_ROOT=TEST_DOCS_ROOT, DOCS_ACCESS='login_required')
