@@ -1,3 +1,4 @@
+import django
 from os.path import join
 from django.http.response import Http404
 from django.views.generic import RedirectView
@@ -14,7 +15,10 @@ from functools import wraps
 from django.contrib.admin.forms import AdminAuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.admin.views.decorators import staff_member_required
-from django.utils.translation import ugettext as _
+if float(django.get_version())>=3:
+    from django.utils.translation import gettext as _
+else:
+    from django.utils.translation import ugettext as _
 
 
 def superuser_required(view_func):
