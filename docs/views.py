@@ -42,7 +42,7 @@ def superuser_required(view_func):
                 'app_path': request.get_full_path()
                 }
             }
-        return LoginView(request, **defaults)
+        return LoginView.as_view()(request, **defaults)
     return _checklogin
 
 
