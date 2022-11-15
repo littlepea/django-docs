@@ -15,7 +15,7 @@ from functools import wraps
 from django.contrib.admin.forms import AdminAuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.admin.views.decorators import staff_member_required
-if float(django.get_version())>=3:
+if django.VERSION[0] >= 3:
     from django.utils.translation import gettext as _
 else:
     from django.utils.translation import ugettext as _
