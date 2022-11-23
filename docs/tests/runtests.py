@@ -36,6 +36,7 @@ COVERAGE_MODULE_EXCLUDES += EXTERNAL_APPS
 
 if not settings.configured:
     settings.configure(
+        SECRET_KEY='sdfkjsdfsdiuy7yruhsdvyggvbis',
         DATABASES={
             "default": {
                 "ENGINE": "django.db.backends.sqlite3",
