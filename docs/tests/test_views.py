@@ -37,7 +37,7 @@ class DocsViewsTestBase(TestCase):
         reload(views)
 
 
-class DefaultSettingsTest(DocsViewsTestBase):
+class A_DefaultSettingsTest(DocsViewsTestBase):
     def test_settings(self):
         self.assertEqual(views.DOCS_ROOT, None)
         self.assertEqual(views.DOCS_ACCESS, views.DOCS_ACCESS_CHOICES[0])
@@ -49,7 +49,7 @@ class DefaultSettingsTest(DocsViewsTestBase):
 
 
 @override_settings(DOCS_ROOT=TEST_DOCS_ROOT, DOCS_ACCESS='wrong-value')
-class IncorrectAccessTest(DocsViewsTestBase):
+class B_IncorrectAccessTest(DocsViewsTestBase):
     def test_settings(self):
         self.assertEqual(views.DOCS_ROOT, TEST_DOCS_ROOT)
         self.assertNotIn(views.DOCS_ACCESS, views.DOCS_ACCESS_CHOICES)
@@ -59,7 +59,7 @@ class IncorrectAccessTest(DocsViewsTestBase):
 
 
 @override_settings(DOCS_ROOT=TEST_DOCS_ROOT, DOCS_ACCESS='public')
-class PublicAccessTest(DocsViewsTestBase):
+class C_PublicAccessTest(DocsViewsTestBase):
     def test_settings(self):
         self.assertEqual(views.DOCS_ROOT, TEST_DOCS_ROOT)
         self.assertEqual(views.DOCS_ACCESS, 'public')
@@ -81,7 +81,7 @@ class PublicAccessTest(DocsViewsTestBase):
 
 
 @override_settings(DOCS_ROOT=TEST_DOCS_ROOT, DOCS_ACCESS='public', DOCS_DIRHTML=True)
-class DIRHTMLTest(DocsViewsTestBase):
+class D_DIRHTMLTest(DocsViewsTestBase):
     def test_settings(self):
         self.assertEqual(views.DOCS_ROOT, TEST_DOCS_ROOT)
         self.assertEqual(views.DOCS_ACCESS, 'public')
@@ -100,7 +100,7 @@ class DIRHTMLTest(DocsViewsTestBase):
 
 
 @override_settings(DOCS_ROOT=TEST_DOCS_ROOT, DOCS_ACCESS='login_required')
-class LoginAccessTest(DocsViewsTestBase):
+class E_LoginAccessTest(DocsViewsTestBase):
     def test_settings(self):
         self.assertEqual(views.DOCS_ROOT, TEST_DOCS_ROOT)
         self.assertEqual(views.DOCS_ACCESS, 'login_required')
