@@ -1,4 +1,4 @@
-from django.conf.urls import re_path
+from django.urls.conf import re_path
 from docs.views import DocsRootView, serve_docs, DOCS_DIRHTML
 
 urlpatterns = []

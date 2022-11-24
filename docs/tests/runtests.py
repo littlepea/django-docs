@@ -9,8 +9,11 @@ for your app and run the tests as if you were calling ``./manage.py test``.
 """
 import os
 import sys
+import collections
 
 from django.conf import settings
+
+collections.Callable = collections.abc.Callable
 
 EXTERNAL_APPS = [
     'django.contrib.admin',
@@ -36,6 +39,7 @@ COVERAGE_MODULE_EXCLUDES += EXTERNAL_APPS
 
 if not settings.configured:
     settings.configure(
+        SECRET_KEY='sdfkjsdfsdiuy7yruhsdvyggvbis',
         DATABASES={
             "default": {
                 "ENGINE": "django.db.backends.sqlite3",
