@@ -9,8 +9,11 @@ for your app and run the tests as if you were calling ``./manage.py test``.
 """
 import os
 import sys
+import collections
 
 from django.conf import settings
+
+collections.Callable = collections.abc.Callable
 
 EXTERNAL_APPS = [
     'django.contrib.admin',
